@@ -32,38 +32,64 @@ class Cylinder {
       e.printStackTrace();
     }
     
-    long elapsedTime = currentDate.getTime() - jobStartDate.getTime();
-    
-    // 48 hrs
-    if (jobType.equals("normal") || jobType.equals("largemem")) {
+    long elapsedTime = currentDate.getTime() - jobStartDate.getTime(); 
+
+    if (jobType.equals("normal")) {                // normal         = 48hrs
       h = 200;
       if(elapsedTime > 1.72e8) percentFull = 1; 
-      else percentFull = elapsedTime/1.72e8;    
+      else percentFull = elapsedTime/1.72e8;
     } 
-    
-    // 24 hrs
-    else if (jobType.equals("large") || jobType.equals("request") || jobType.equals("normal-mic") || jobType.equals("normal-2mic") || jobType.equals("gpu")) {
-      h = 100;
-      if(elapsedTime > 8.64e7) percentFull = 1;
-      else percentFull = elapsedTime/8.64e7;
+    else if (jobType.equals("development")) {      // development    = 04hrs
+      h = 20;
+      if(elapsedTime > 1.44e7) percentFull = 1;
+      else percentFull = elapsedTime/1.44e7;  
     } 
-    
-    // 12 hrs
-    else if (jobType.equals("serial")) {
+    else if (jobType.equals("largemem")) {         // largemem       = 48hrs
+      h = 200;
+      if(elapsedTime > 1.72e8) percentFull = 1;
+      else percentFull = elapsedTime/1.72e8;
+    } 
+    else if (jobType.equals("serial")) {           // serial         = 12hrs
       h = 60;
       if(elapsedTime > 4.32e7) percentFull = 1;
       else percentFull = elapsedTime/4.32e7;
     } 
-    
-    // 08 hrs
-    else if (jobType.equals("vis")) {
+    else if (jobType.equals("large")) {            // large          = 24hrs
+      h = 100;
+      if(elapsedTime > 8.64e7) percentFull = 1;
+      else percentFull = elapsedTime/8.64e7;
+    } 
+    else if (jobType.equals("request")) {          // request        = 24hrs
+      h = 100;
+      if(elapsedTime > 8.64e7) percentFull = 1;
+      else percentFull = elapsedTime/8.64e7;
+    }
+    else if (jobType.equals("normal-mic")) {       // request        = 24hrs
+      h = 100;
+      if(elapsedTime > 8.64e7) percentFull = 1;
+      else percentFull = elapsedTime/8.64e7;
+    }
+    else if (jobType.equals("normal-2mic")) {      // request        = 24hrs
+      h = 100;
+      if(elapsedTime > 8.64e7) percentFull = 1;
+      else percentFull = elapsedTime/8.64e7;
+    } 
+    else if (jobType.equals("gpu")) {              // gpu            = 24hrs
+      h = 100;
+      if(elapsedTime > 8.64e7) percentFull = 1;      
+      else percentFull = elapsedTime/8.64e7;
+    }
+    else if (jobType.equals("gpudev")) {           // gpudev         = 04hrs
+      h = 20;
+      if(elapsedTime > 1.44e7) percentFull = 1;      
+      else percentFull = elapsedTime/1.44e7;
+    }
+    else if (jobType.equals("vis")) {              // vis            = 08hrs
       h = 40;
       if(elapsedTime > 2.88e7) percentFull = 1;      
       else percentFull = elapsedTime/2.88e7;
-    } 
-    
-    // 04 hrs
-    else if (jobType.equals("development") || jobType.equals("gpudev") || jobType.equals("visdev")) {
+    }  
+    else if (jobType.equals("visdev")) {           // visdev         = 04hrs
       h = 20;
       if(elapsedTime > 1.44e7) percentFull = 1;
       else percentFull = elapsedTime/1.44e7;  

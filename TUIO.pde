@@ -1,4 +1,4 @@
-  // we need to import the TUIO library
+// we need to import the TUIO library
 // and declare a TuioProcessing client variable
 import TUIO.*;
 TuioProcessing tuioClient;
@@ -64,7 +64,7 @@ void updateTuioCursor (TuioCursor tcur) {
     posY += dy;
 
     startX = currX;
-    startY = currY;  
+    startY = currY;
   }
   else if (tuioCursor1 != null && tuioCursor2 != null) {    
     // zoom
@@ -72,8 +72,15 @@ void updateTuioCursor (TuioCursor tcur) {
     zoomScaler = prevZoomScaler*(currDistance/startDistance);
   } 
   else if (tuioCursor1 != null) {
-    // rotate
-    arcball.mouseDragged(tcur.getScreenX(width),tcur.getScreenY(height));      
+    if(tcur.getScreenX(width) > width * 3/4 && tcur.getScreenX(width) < width * 3/4 + 1100
+        && tcur.getScreenY(height) > 1300 && tcur.getScreenY(height) < 1600) {
+        
+        abstractText.scroll(map(tcur.getScreenY(height), 1300, 1600, 0, 1)); 
+        
+    }else {
+      // rotate
+      arcball.mouseDragged(tcur.getScreenX(width),tcur.getScreenY(height));     
+    } 
   } 
 }
 
@@ -83,20 +90,27 @@ void removeTuioCursor(TuioCursor tcur) {
     // Remove 3nd cursor
     tuioCursor3 = null;
     
-    if (tuioCursor2 != null && tuioCursor2.getCursorID() == tcur.getCursorID()) tuioCursor2 = null;
-    if (tuioCursor1 != null && tuioCursor1.getCursorID() == tcur.getCursorID()) tuioCursor3 = null;
+    // remove the remaining cursors to prevent jitter
+    if (tuioCursor2 != null) tuioCursor2 = null;
+    if (tuioCursor1 != null) tuioCursor1 = null;
   }
   
   if (tuioCursor2 != null && tuioCursor2.getCursorID() == tcur.getCursorID()) {
     // Remove 2nd cursor
     tuioCursor2 = null;
     
-    if (tuioCursor1 != null && tuioCursor1.getCursorID() == tcur.getCursorID()) tuioCursor3 = null;
+    // remove the remaining cursors to prevent jitter
+    if (tuioCursor3 != null) tuioCursor3 = null;
+    if (tuioCursor1 != null) tuioCursor1 = null;
   }
 
   if (tuioCursor1 != null && tuioCursor1.getCursorID() == tcur.getCursorID()) {
     // Remove 1st cursor
     tuioCursor1 = null;
+    
+    // remove the remaining cursors to prevent jitter
+    if (tuioCursor3 != null) tuioCursor3 = null;
+    if (tuioCursor2 != null) tuioCursor2 = null;
   } 
 }
 
