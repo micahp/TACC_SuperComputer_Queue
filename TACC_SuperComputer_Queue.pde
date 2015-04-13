@@ -258,16 +258,8 @@ void parseFile() {
         //add job to allJobs array list
         allJobs.add(new Job(num, name, owner, startTime, queue, slotNum, pi, fieldOfStudy, institution, abstractt));
       }
-
-      //      if(id.equals("TG-MCA01S027")){
-      //        count+= slotNum;
-      //        //println("add " + slotNum + " to count");
-      //      }
-      //println("Adding job " + id + " to hashmap");
     }
   }  
-  //println();
-  //println("Number of slots requested for TG-MCA01S027: " + count);
 }
 
 int getMaxSlotsPosition(ArrayList<Job> jobs) {
@@ -352,16 +344,6 @@ void createHUDs() {
   // change the default font to Verdana
   PFont p = createFont("Times-Roman", 40);
   cp5.setFont(p);
-  //cp5.setColorForeground(color(0, 175));
-  
-  
-  //  jobInfo = "Job #" + (highlighter1+1) + "\n\n" +
-  //            "Job Number:         " + smallJobs.get(highlighter1).getJobNum() + "\n" +
-  //            "Job Name:             " + smallJobs.get(highlighter1).getJobName() + "\n" +
-  //            "TACC User:           " + smallJobs.get(highlighter1).getJobOwner() + "\n" +
-  //            "Requested Time:   " + smallJobs.get(highlighter1).getAllocatedTime() + "\n" +
-  //            "Elapsed Time:        " + smallJobs.get(highlighter1).getElapsedTime() + "\n" +
-  //            "Requested CPUs:  " + smallJobs.get(highlighter1).getSlots() + "\n";
 
   jobInfo = "Job #" + (highlighter1+1) + "\n\n" +
     "Job Number:         " + smallJobs.get(highlighter1).getJobNum() + "\n" +
