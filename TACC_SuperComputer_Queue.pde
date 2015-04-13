@@ -1,3 +1,8 @@
+import controlP5.ControlFont;
+import controlP5.ControlFont;
+import controlP5.ControlFont;
+import controlP5.ControlFont;
+import controlP5.ControlFont;
 // used for vis interaction (pan, zoom, rotate)
 import peasy.*;
 import java.util.Map;
@@ -101,7 +106,7 @@ void setup() {
   } 
   else {
     createHUDs();
-   // noCursor();
+    noCursor();
   }
 }
 
@@ -208,7 +213,7 @@ void parseFile() {
   // Load an JSON 
   JSONArray json = loadJSONArray("queue.json");
 
-  int count = 0;
+  //int count = 0;
 
   for (int i=0; i < json.size(); i++ ) {    
     JSONObject job = json.getJSONObject(i); 
@@ -346,8 +351,10 @@ void highlightJobNodes(int index, ArrayList<Job> jobs, Helix helix) {
 void createHUDs() {
   // change the default font to Verdana
   PFont p = createFont("Times-Roman", 40);
-  cp5.setControlFont(p);
-
+  cp5.setFont(p);
+  //cp5.setColorForeground(color(0, 175));
+  
+  
   //  jobInfo = "Job #" + (highlighter1+1) + "\n\n" +
   //            "Job Number:         " + smallJobs.get(highlighter1).getJobNum() + "\n" +
   //            "Job Name:             " + smallJobs.get(highlighter1).getJobName() + "\n" +
@@ -372,7 +379,7 @@ void createHUDs() {
   // Visualization Description
   descriptionBox = cp5.addGroup("descriptionBox", width/295, height/111, width * 2/10);
   descriptionBox.setBackgroundHeight((int)(height/5.67));
-  descriptionBox.setBackgroundColor(color(0, 175));
+  descriptionBox.setBackgroundColor(127);
   descriptionBox.hideBar();
   System.out.println(displayHeight);
   System.out.println(displayWidth);
@@ -384,7 +391,7 @@ void createHUDs() {
   // Visualization Interaction
   usageBox = cp5.addGroup("usageBox", width/295, (int)(height/3.18), (int)(width/7.1));
   usageBox.setBackgroundHeight((int)(height/8.57));
-  usageBox.setBackgroundColor(color(0, 175));
+  usageBox.setBackgroundColor(127);
   usageBox.hideBar();
 
   usageText = cp5.addTextlabel("usageBoxLabel", usage, width/295, height/111);
@@ -393,7 +400,7 @@ void createHUDs() {
   // Job Information
   jobBox = cp5.addGroup("jobBox", width/295, (int)(height/1.74), (int)(width/5.36));
   jobBox.setBackgroundHeight((int)(height/4.46));
-  jobBox.setBackgroundColor(color(0, 175));
+  jobBox.setBackgroundColor(127);
   jobBox.hideBar();
 
   jobText = cp5.addTextlabel("jobBoxLabel", jobInfo, width/295, height/111);
@@ -402,7 +409,7 @@ void createHUDs() {
   // Title Information
   titleBox = cp5.addGroup("titleBox", (int)(width/2.37), height/111, (int)(width/6.41));
   titleBox.setBackgroundHeight((int)(height/10.61));
-  titleBox.setBackgroundColor(color(0, 175));
+  titleBox.setBackgroundColor(127);
   titleBox.hideBar();
 
   titleText = cp5.addTextlabel("titleTextLabel", title, width/295, height/111);
@@ -410,14 +417,13 @@ void createHUDs() {
 
   // Abstract Info in scrollable textarea
   abstractBox = cp5.addGroup("abstractBox", width * 3/4, (int)(height/1.71), 0);
-  //abstractBox.setBackgroundHeight((int)(height/4.46));
-  //abstractBox.setBackgroundColor(255);
   abstractBox.hideBar();
 
+  
   abstractText = cp5.addTextarea("abstractText")
                     .setPosition(width * 3/4, (int)(height/1.71))
                     .setSize((int)(width/5.31), (int)(height/7.43))
-                    .setColorBackground(color(0, 175));
+                    .setColorBackground(127);
                    
   abstractText.setText(jobAbstract);
 }
@@ -504,4 +510,3 @@ void mousePressed() {
     break;
   }
 }
-
